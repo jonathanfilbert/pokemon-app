@@ -1,4 +1,4 @@
-import { Animated, Basic, bounce, Combined } from '../shared/styles'
+import { Basic, bounce, Combined } from '../shared/styles'
 
 const Home = () => (
   <div>
@@ -6,7 +6,6 @@ const Home = () => (
     <Combined>
       With <code>:hover</code>.
     </Combined>
-    <Animated animation={bounce}>Let's bounce.</Animated>
   </div>
 )
 

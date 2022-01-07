@@ -57,11 +57,3 @@ export const Combined = styled.div`
     background-color: linen;
   }
 `
-export const Animated = styled.div`
-  ${basicStyles};
-  ${hoverStyles};
-  & code {
-    background-color: linen;
-  }
-  animation: ${({ animation }) => animation} 0.2s infinite ease-in-out alternate;
-`
