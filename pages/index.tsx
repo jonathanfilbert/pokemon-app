@@ -1,4 +1,4 @@
-import { Basic, bounce, Combined } from '../shared/styles'
+import { Basic, bounce, Combined } from "../src/shared/styles"
 
 const Home = () => (
   <div>
