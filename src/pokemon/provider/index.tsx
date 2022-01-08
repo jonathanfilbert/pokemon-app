@@ -19,6 +19,19 @@ export const PokemonProvider = ({children}) => {
     else {
       newOwnedPokemons[pokemon.id] = [{nickname, pokemon}]
     }
+    console.log(newOwnedPokemons)
+    setOwnedPokemons({...newOwnedPokemons})
+  }
+
+  const releasePokemon = (nickname:string, pokemon:PokemonResponse) => {
+    let newOwnedPokemons = ownedPokemons
+    console.log(pokemon)
+    const targetId = newOwnedPokemons[pokemon.id].findIndex(ownedItem => ownedItem.nickname === nickname)
+    newOwnedPokemons[pokemon.id].splice(targetId, 1);
+    if (newOwnedPokemons[pokemon.id].length === 0){
+      delete newOwnedPokemons[pokemon.id]
+    }
+    console.log(newOwnedPokemons)
     setOwnedPokemons({...newOwnedPokemons})
   }
 
@@ -26,7 +39,8 @@ export const PokemonProvider = ({children}) => {
     <PokemonContext.Provider value={
       {
         catchPokemon,
-        ownedPokemons
+        ownedPokemons,
+        releasePokemon
       }
     } >
       {children}

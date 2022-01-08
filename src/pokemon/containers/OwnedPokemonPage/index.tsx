@@ -4,6 +4,7 @@ import { PokemonContext } from '../../context'
 
 const OwnedPokemonPage = () => {
   const {ownedPokemons} = useContext(PokemonContext)
+  console.log("doa",ownedPokemons)
   return(
     <div>
       <h1>Owned Pokemons</h1>
@@ -11,13 +12,12 @@ const OwnedPokemonPage = () => {
         ownedPokemons[id].map(ownedPokemon => (
           <PokemonCard pokemon={{
             name: ownedPokemon.pokemon.name,
-            id: ownedPokemon.id,
+            id: id,
             image: ownedPokemon.pokemon.sprites.front_default
           }} nickname={ownedPokemon.nickname} />
         ))
       ))}
     </div>
-
   )
 }
 
