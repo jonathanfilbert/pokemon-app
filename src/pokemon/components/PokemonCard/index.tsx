@@ -5,10 +5,11 @@ import { PokemonResponse } from '../../containers/AllPokemonPage'
 import { PokemonCardWrapper } from './styles'
 
 type PokemonCardProps = {
-  pokemon: PokemonResponse
+  pokemon: PokemonResponse,
+  nickname?: string
 }
 
-const PokemonCard = ({pokemon}:PokemonCardProps) => {
+const PokemonCard = ({pokemon, nickname}:PokemonCardProps) => {
   const router = useRouter()
   const handleClickPokemonCard = (name:string) => {
     router.push(`/pokemon/${name}`)
@@ -21,6 +22,7 @@ const PokemonCard = ({pokemon}:PokemonCardProps) => {
         <div>00 owned</div>
        </div>
       <Image src={pokemon.image} objectFit="contain" width={250} height={250} />
+      <div>{nickname ? nickname : ""}</div>
       <div>{pokemon.name}</div>
     </PokemonCardWrapper>
   )

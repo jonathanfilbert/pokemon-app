@@ -6,7 +6,7 @@ import PokemonCard from '../../components/PokemonCard'
 import { AllPokemonPageContainer } from './styles'
 
 export type PokemonResponse = {
-    url: string;
+    url?: string;
     name: string;
     image: string;
     id: number;

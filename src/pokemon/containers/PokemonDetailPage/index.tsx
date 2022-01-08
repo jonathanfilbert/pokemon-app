@@ -10,11 +10,22 @@ type PokemonDetailPageProps = {
 
 const PokemonDetailPage = ({pokemon}: PokemonDetailPageProps) => {
   const {catchPokemon} = useContext(PokemonContext)
+
+  const handleCatchPokemon = (pokemon:IPokemon) => {
+    const generatedNumber = Math.random()
+    if(generatedNumber < 0.5) {
+      catchPokemon("James", pokemon)
+    }
+    else{
+      alert("Not caught!")
+    }
+  }
+
   return(
     <div>
       <h1>{pokemon.name}</h1>
       <Image src={pokemon.sprites.front_default} width="100px" height="100px" />
-      <button onClick={() => catchPokemon(pokemon)} >Catch {pokemon.name}!</button>
+      <button onClick={() => handleCatchPokemon(pokemon)} >Catch {pokemon.name}!</button>
       <div>
         <h1>Pokemon Moves</h1>
         {pokemon.moves.map(move => (
