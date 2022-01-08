@@ -1,12 +1,3 @@
-import { Basic, bounce, Combined } from "../src/shared/styles"
+import AllPokemonPage from "../src/pokemon/containers/AllPokemonPage";
 
-const Home = () => (
-  <div>
-    <Basic>Cool Styles</Basic>
-    <Combined>
-      With <code>:hover</code>.
-    </Combined>
-  </div>
-)
-
-export default Home
+export default AllPokemonPage
