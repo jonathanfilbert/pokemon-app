@@ -12,7 +12,7 @@ const OwnedPokemonPage = () => {
         ownedPokemons[id].map(ownedPokemon => (
           <PokemonCard pokemon={{
             name: ownedPokemon.pokemon.name,
-            id: id,
+            id: ownedPokemon.pokemon.id,
             image: ownedPokemon.pokemon.sprites.front_default
           }} nickname={ownedPokemon.nickname} />
         ))
