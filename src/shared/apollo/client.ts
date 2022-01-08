@@ -1,7 +1,9 @@
-import { ApolloClient, InMemoryCache } from "@apollo/client";
+import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 
 const client = new ApolloClient({
-    uri: "https://countries.trevorblades.com",
+    // graphql endpoint for pokeapi
+    // cc: https://github.com/mazipan/graphql-pokeapi
+    link: new HttpLink({ uri: "https://graphql-pokeapi.vercel.app/api/graphql", fetch }),
     cache: new InMemoryCache(),
 });
 
