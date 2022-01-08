@@ -4,6 +4,7 @@ import { AllPokemonPageContainer } from './styles'
 
 const AllPokemonPage = () => {
   return(
+    <div>
     <AllPokemonPageContainer>
       <PokemonCard/>
       <PokemonCard/>
@@ -11,6 +12,7 @@ const AllPokemonPage = () => {
       <PokemonCard/>
       <PokemonCard/>
     </AllPokemonPageContainer>
+    </div>
   )
 }
 
