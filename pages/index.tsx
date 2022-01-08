@@ -6,14 +6,14 @@ export const getServerSideProps = async () => {
   const {data} = await client.query({
     query: GET_ALL_POKEMON,
     variables: {
-      limit: 25,
-      offset: 5
+      limit: 24,
+      offset: 0
     },
   })
-  const {results: pokemons} = data.pokemons
+  const {results} = data.pokemons
   return {
     props: {
-      pokemons
+      results
     }
   }
 }

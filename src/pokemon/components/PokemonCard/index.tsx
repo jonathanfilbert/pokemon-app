@@ -15,7 +15,7 @@ const PokemonCard = ({pokemon}:PokemonCardProps) => {
   }
 
   return(
-    <PokemonCardWrapper onClick={() => handleClickPokemonCard("ditto")} >
+    <PokemonCardWrapper onClick={() => handleClickPokemonCard(pokemon.name)} >
       <div className='pokemon-id-and-owned-row' >
         <div>{pokemon.id}</div>
         <div>00 owned</div>
