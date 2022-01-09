@@ -68,6 +68,14 @@ export const PokemonProvider = ({ children }) => {
     return id in ownedPokemons ? ownedPokemons[id].length : 0;
   };
 
+  const getOwnedPokemonTotalAmount = (): number => {
+    let total = 0;
+    Object.keys(ownedPokemons).map((id) => {
+      total += ownedPokemons[id].length;
+    });
+    return total;
+  };
+
   return (
     <PokemonContext.Provider
       value={{
@@ -76,6 +84,7 @@ export const PokemonProvider = ({ children }) => {
         releasePokemon,
         isPokemonWithSameNicknameExist,
         getAmountOwnedById,
+        getOwnedPokemonTotalAmount,
       }}
     >
       {children}

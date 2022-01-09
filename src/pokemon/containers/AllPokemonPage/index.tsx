@@ -1,10 +1,12 @@
 import { useLazyQuery, useMutation } from "@apollo/client";
 import { useToast } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import client from "../../../shared/apollo/client";
 import { GET_ALL_POKEMON } from "../../../shared/apollo/queries";
 import Loader from "../../../shared/components/Loader";
+import SEO from "../../../shared/components/SEO";
 import PokemonCard from "../../components/PokemonCard";
+import { PokemonContext } from "../../context";
 import { AllPokemonPageContainer } from "./styles";
 
 export type PokemonResponse = {
@@ -23,6 +25,8 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
   const [getAllPokemon, { data, loading, error }] =
     useLazyQuery(GET_ALL_POKEMON);
   const toast = useToast();
+  const { getOwnedPokemonTotalAmount } = useContext(PokemonContext);
+
   let scrollPage = 1;
 
   const scrollListener = (e) => {
@@ -67,10 +71,17 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
 
   return (
     <div>
+      <SEO
+        title="Pokemon App"
+        desc="Pokemon Application built for the mobile first generation."
+      />
       <AllPokemonPageContainer>
-        {pokemons?.map((pokemon) => (
-          <PokemonCard pokemon={pokemon} />
-        ))}
+        <div>Owned total: {getOwnedPokemonTotalAmount()}</div>
+        <div className="all-pokemon">
+          {pokemons?.map((pokemon) => (
+            <PokemonCard pokemon={pokemon} />
+          ))}
+        </div>
       </AllPokemonPageContainer>
       {loading && <Loader />}
     </div>

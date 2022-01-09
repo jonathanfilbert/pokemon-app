@@ -8,4 +8,5 @@ export const PokemonContext = createContext({
   releasePokemon: (nickname: string, pokemon: PokemonResponse) => {},
   isPokemonWithSameNicknameExist: (id: number, nickname: string): any => {},
   getAmountOwnedById: (id: number): any => {},
+  getOwnedPokemonTotalAmount: (): any => {},
 });

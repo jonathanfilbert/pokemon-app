@@ -6,6 +6,7 @@ import { Button, useDisclosure, useToast } from "@chakra-ui/react";
 import { PokemonContext } from "../../context";
 import { toTitleCase } from "../../../shared/utils";
 import PokemonCaughtSuccessModal from "../../components/PokemonCaughtSuccessModal";
+import SEO from "../../../shared/components/SEO";
 
 type PokemonDetailPageProps = {
   pokemon: IPokemon;
@@ -59,6 +60,10 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
 
   return (
     <div>
+      <SEO
+        title={`${pokemon.name} | Pokemon App`}
+        desc={`${pokemon.name} details, learn more on the Pokemon App.`}
+      />
       <PokemonCaughtSuccessModal
         isValid={isNicknameValid}
         pokemon={pokemon}
