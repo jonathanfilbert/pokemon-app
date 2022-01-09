@@ -1,5 +1,5 @@
 import { IPokemon } from "pokeapi-typescript";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PokemonResponse } from "../containers/AllPokemonPage";
 import { PokemonContext } from "../context";
 
@@ -8,8 +8,20 @@ export type OwnedPokemonType = {
   pokemon: PokemonResponse;
 };
 
+export const LOCAL_STORAGE_KEY = "TokopediaGottaCatchEmAll2022";
+
 export const PokemonProvider = ({ children }) => {
   const [ownedPokemons, setOwnedPokemons] = useState<OwnedPokemonType>(Object);
+
+  useEffect(() => {
+    // if previous data exists
+    if (localStorage.getItem(LOCAL_STORAGE_KEY) !== null) {
+      const previousOwnedPokemons = JSON.parse(
+        localStorage.getItem(LOCAL_STORAGE_KEY)
+      );
+      setOwnedPokemons(previousOwnedPokemons);
+    }
+  }, []);
 
   const catchPokemon = (nickname: string, pokemon: IPokemon) => {
     let newOwnedPokemons = ownedPokemons;
@@ -19,6 +31,7 @@ export const PokemonProvider = ({ children }) => {
       newOwnedPokemons[pokemon.id] = [{ nickname, pokemon }];
     }
     setOwnedPokemons({ ...newOwnedPokemons });
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newOwnedPokemons));
   };
 
   const releasePokemon = (nickname: string, pokemon: PokemonResponse) => {
@@ -31,6 +44,7 @@ export const PokemonProvider = ({ children }) => {
       delete newOwnedPokemons[pokemon.id];
     }
     setOwnedPokemons({ ...newOwnedPokemons });
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newOwnedPokemons));
   };
 
   const isPokemonWithSameNicknameExist = (
