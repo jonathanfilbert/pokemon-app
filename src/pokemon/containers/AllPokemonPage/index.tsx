@@ -25,7 +25,6 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
   const [getAllPokemon, { data, loading, error }] =
     useLazyQuery(GET_ALL_POKEMON);
   const toast = useToast();
-  const { getOwnedPokemonTotalAmount } = useContext(PokemonContext);
 
   let scrollPage = 1;
 
@@ -76,7 +75,6 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
         desc="Pokemon Application built for the mobile first generation."
       />
       <AllPokemonPageContainer>
-        <div>Owned total: {getOwnedPokemonTotalAmount()}</div>
         <div className="all-pokemon">
           {pokemons?.map((pokemon) => (
             <PokemonCard pokemon={pokemon} />

@@ -1,14 +1,18 @@
-import React from 'react'
-import Header from '../Header'
-import { LayoutWrapper } from './styles'
+import React from "react";
+import Header from "../Header";
+import { LayoutWrapper } from "./styles";
 
-const Layout = ({children}) => {
-  return(
+type LayoutProps = {
+  children: React.FC;
+};
+
+const Layout = ({ children }: LayoutProps) => {
+  return (
     <LayoutWrapper>
-      <Header/>
+      <Header />
       {children}
     </LayoutWrapper>
-  )
-}
+  );
+};
 
-export default Layout
+export default Layout;
