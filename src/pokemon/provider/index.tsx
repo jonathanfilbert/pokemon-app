@@ -4,46 +4,62 @@ import { PokemonResponse } from "../containers/AllPokemonPage";
 import { PokemonContext } from "../context";
 
 export type OwnedPokemonType = {
-  nickname:string,
-  pokemon: PokemonResponse
-}
+  nickname: string;
+  pokemon: PokemonResponse;
+};
 
-export const PokemonProvider = ({children}) => {
-  const [ownedPokemons, setOwnedPokemons] = useState<OwnedPokemonType>(Object)
+export const PokemonProvider = ({ children }) => {
+  const [ownedPokemons, setOwnedPokemons] = useState<OwnedPokemonType>(Object);
 
-  const catchPokemon = (nickname:string, pokemon:IPokemon) => {
-    let newOwnedPokemons = ownedPokemons
+  const catchPokemon = (nickname: string, pokemon: IPokemon) => {
+    let newOwnedPokemons = ownedPokemons;
     if (newOwnedPokemons[pokemon.id]) {
-      newOwnedPokemons[pokemon.id].push({nickname, pokemon})
+      newOwnedPokemons[pokemon.id].push({ nickname, pokemon });
+    } else {
+      newOwnedPokemons[pokemon.id] = [{ nickname, pokemon }];
     }
-    else {
-      newOwnedPokemons[pokemon.id] = [{nickname, pokemon}]
-    }
-    console.log(newOwnedPokemons)
-    setOwnedPokemons({...newOwnedPokemons})
-  }
+    setOwnedPokemons({ ...newOwnedPokemons });
+  };
 
-  const releasePokemon = (nickname:string, pokemon:PokemonResponse) => {
-    let newOwnedPokemons = ownedPokemons
-    console.log(pokemon)
-    const targetId = newOwnedPokemons[pokemon.id].findIndex(ownedItem => ownedItem.nickname === nickname)
+  const releasePokemon = (nickname: string, pokemon: PokemonResponse) => {
+    let newOwnedPokemons = ownedPokemons;
+    const targetId = newOwnedPokemons[pokemon.id].findIndex(
+      (ownedItem) => ownedItem.nickname === nickname
+    );
     newOwnedPokemons[pokemon.id].splice(targetId, 1);
-    if (newOwnedPokemons[pokemon.id].length === 0){
-      delete newOwnedPokemons[pokemon.id]
+    if (newOwnedPokemons[pokemon.id].length === 0) {
+      delete newOwnedPokemons[pokemon.id];
     }
-    console.log(newOwnedPokemons)
-    setOwnedPokemons({...newOwnedPokemons})
-  }
+    setOwnedPokemons({ ...newOwnedPokemons });
+  };
 
-  return(
-    <PokemonContext.Provider value={
-      {
+  const isPokemonWithSameNicknameExist = (
+    id: number,
+    nickname: string
+  ): boolean => {
+    let isExist = false;
+    if (!(id in ownedPokemons)) {
+      isExist = false;
+    } else {
+      ownedPokemons[id].forEach((ownedPokemon) => {
+        if (ownedPokemon.nickname === nickname) {
+          isExist = true;
+        }
+      });
+    }
+    return isExist;
+  };
+
+  return (
+    <PokemonContext.Provider
+      value={{
         catchPokemon,
         ownedPokemons,
-        releasePokemon
-      }
-    } >
+        releasePokemon,
+        isPokemonWithSameNicknameExist,
+      }}
+    >
       {children}
     </PokemonContext.Provider>
-  )
-}
+  );
+};
