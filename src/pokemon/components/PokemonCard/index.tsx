@@ -1,3 +1,4 @@
+import { Button, toast, useToast } from "@chakra-ui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useContext } from "react";
@@ -14,12 +15,20 @@ const PokemonCard = ({ pokemon, nickname }: PokemonCardProps) => {
   const { releasePokemon } = useContext(PokemonContext);
   const router = useRouter();
   const { getAmountOwnedById } = useContext(PokemonContext);
+  const toast = useToast();
   const handleClickPokemonCard = (name: string) => {
     router.push(`/pokemon/${name}`);
   };
 
   const handleReleasePokemon = () => {
     releasePokemon(nickname, pokemon);
+    toast({
+      title: `Released successfully!`,
+      description: `You said goodbye to ${nickname} the ${pokemon.name}`,
+      status: "success",
+      duration: 3000,
+      isClosable: true,
+    });
   };
 
   return (
@@ -38,7 +47,9 @@ const PokemonCard = ({ pokemon, nickname }: PokemonCardProps) => {
       <div>{nickname ? nickname : ""}</div>
       <div>{pokemon.name}</div>
       {nickname && (
-        <button onClick={() => handleReleasePokemon()}>Release</button>
+        <Button bgColor="white" onClick={() => handleReleasePokemon()}>
+          Release
+        </Button>
       )}
     </PokemonCardWrapper>
   );

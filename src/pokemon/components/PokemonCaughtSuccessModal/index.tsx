@@ -6,7 +6,6 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  useDisclosure,
   Input,
 } from "@chakra-ui/react";
 import { IPokemon } from "pokeapi-typescript";
@@ -14,8 +13,6 @@ import { toTitleCase } from "../../../shared/utils";
 import { Button } from "@chakra-ui/react";
 import Image from "next/image";
 import { PokemonCaughtSucessModalContentWrapper } from "./styles";
-import { HTMLInputTypeAttribute, useContext, useState } from "react";
-import { PokemonContext } from "../../context";
 
 type PokemonCaughtSuccessModalProps = {
   isOpen: boolean;
@@ -65,7 +62,9 @@ const PokemonCaughtSuccessModal = ({
               placeholder="Toped"
             />
             {!isValid && !!nickname && (
-              <div>{nickname} already exists, please try another.</div>
+              <div className="error-message">
+                {nickname} already exists, please try another.
+              </div>
             )}
           </PokemonCaughtSucessModalContentWrapper>
         </ModalBody>

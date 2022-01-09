@@ -48,7 +48,9 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
     onClose();
     toast({
       title: `Catch Success!`,
-      description: `Gotcha, ${nickname} the ${pokemon.name} has joined your team!`,
+      description: `Gotcha, ${nickname} the ${toTitleCase(
+        pokemon.name
+      )} has joined your team!`,
       status: "success",
       duration: 3000,
       isClosable: true,

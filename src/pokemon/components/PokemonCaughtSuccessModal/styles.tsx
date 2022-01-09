@@ -6,4 +6,8 @@ export const PokemonCaughtSucessModalContentWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .error-message {
+    color: red;
+  }
 `;
