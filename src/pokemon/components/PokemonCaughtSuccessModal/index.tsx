@@ -73,7 +73,7 @@ const PokemonCaughtSuccessModal = ({
           <Button
             onClick={() => onSavePokemon()}
             colorScheme="green"
-            disabled={!isValid}
+            disabled={!isValid || nickname === ""}
           >
             Join the team!
           </Button>

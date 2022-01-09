@@ -64,6 +64,10 @@ export const PokemonProvider = ({ children }) => {
     return isExist;
   };
 
+  const getAmountOwnedById = (id: number): number => {
+    return id in ownedPokemons ? ownedPokemons[id].length : 0;
+  };
+
   return (
     <PokemonContext.Provider
       value={{
@@ -71,6 +75,7 @@ export const PokemonProvider = ({ children }) => {
         ownedPokemons,
         releasePokemon,
         isPokemonWithSameNicknameExist,
+        getAmountOwnedById,
       }}
     >
       {children}

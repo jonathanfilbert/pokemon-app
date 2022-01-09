@@ -13,6 +13,7 @@ type PokemonCardProps = {
 const PokemonCard = ({ pokemon, nickname }: PokemonCardProps) => {
   const { releasePokemon } = useContext(PokemonContext);
   const router = useRouter();
+  const { getAmountOwnedById } = useContext(PokemonContext);
   const handleClickPokemonCard = (name: string) => {
     router.push(`/pokemon/${name}`);
   };
@@ -25,7 +26,7 @@ const PokemonCard = ({ pokemon, nickname }: PokemonCardProps) => {
     <PokemonCardWrapper>
       <div className="pokemon-id-and-owned-row">
         <div>{pokemon.id}</div>
-        <div>00 owned</div>
+        <div>{getAmountOwnedById(pokemon.id)} owned</div>
       </div>
       <Image
         onClick={() => handleClickPokemonCard(pokemon.name)}
