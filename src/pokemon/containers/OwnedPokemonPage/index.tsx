@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from "react";
+import PokemonCardLoader from "../../../shared/components/PokemonCardLoader";
 import SEO from "../../../shared/components/SEO";
 import PokemonCard from "../../components/PokemonCard";
 import { PokemonContext } from "../../context";
@@ -12,7 +13,7 @@ const OwnedPokemonPage = () => {
         title="Owned Pokemon | Pokemon App"
         desc="My Owned Pokemon, add yours now on the Pokemon App."
       />
-      <h1>Owned Pokemons</h1>
+      <div className="page-title">Owned Pokemons</div>
       <div className="owned-pokemon-grid">
         {ownedPokemons &&
           Object.keys(ownedPokemons).map((id) =>

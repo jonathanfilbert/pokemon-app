@@ -1,11 +1,14 @@
 // Turn a string into a title case
 // cr: https://stackoverflow.com/a/196991
-export const toTitleCase = (str: string) => str.replace(
+const titleCase = (str: string) => str.replace(
     /\w\S*/g,
     function(txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     }
   );
+
+export const toTitleCase = (str:string) => str
+.split("_").map((word) => titleCase(word)).join(" ")
 
 // Pokemon types colors
 // cr: https://gist.github.com/apaleslimghost/0d25ec801ca4fc43317bcff298af43c3

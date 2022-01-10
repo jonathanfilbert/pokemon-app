@@ -52,6 +52,7 @@ export const PokemonDetailPageWrapper = styled.div<PokemonDetailPageWrapperProps
     position: fixed;
     bottom: 10px;
     right: 10px;
+    z-index: 1;
   }
 
   .pokemon-detail-title {
@@ -81,5 +82,12 @@ export const PokemonDetailPageWrapper = styled.div<PokemonDetailPageWrapperProps
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 0;
+  }
+
+  .page-title {
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 10px;
   }
 `;

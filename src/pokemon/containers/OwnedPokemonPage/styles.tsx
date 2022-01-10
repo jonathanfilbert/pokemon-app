@@ -12,4 +12,9 @@ export const OwnedPokemonPageWrapper = styled.div`
       grid-template-columns: repeat(2, 1fr);
     }
   }
+  .page-title {
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 10px;
+  }
 `;

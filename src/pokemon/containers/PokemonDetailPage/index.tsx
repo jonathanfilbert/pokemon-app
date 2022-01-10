@@ -95,8 +95,10 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
   return (
     <div>
       <SEO
-        title={`${pokemon.name} | Pokemon App`}
-        desc={`${pokemon.name} details, learn more on the Pokemon App.`}
+        title={`${toTitleCase(pokemon.name)} | Pokemon App`}
+        desc={`${toTitleCase(
+          pokemon.name
+        )} details, learn more on the Pokemon App.`}
       />
       <PokemonCaughtSuccessModal
         isValid={isNicknameValid}

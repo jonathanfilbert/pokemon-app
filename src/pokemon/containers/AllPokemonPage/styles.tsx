@@ -18,4 +18,10 @@ export const AllPokemonPageContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
   }
+
+  .page-title {
+    font-weight: bold;
+    font-size: x-large;
+    margin-bottom: 10px;
+  }
 `;
