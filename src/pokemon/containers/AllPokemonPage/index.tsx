@@ -1,6 +1,6 @@
 import { useLazyQuery } from "@apollo/client";
 import { useToast } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { GET_ALL_POKEMON } from "../../../shared/apollo/queries";
 import PokemonCardLoader from "../../../shared/components/PokemonCardLoader";
 import SEO from "../../../shared/components/SEO";
@@ -20,26 +20,30 @@ export type PokeAPIResponse = {
 
 const AllPokemonPage = ({ results }: PokeAPIResponse) => {
   const [pokemons, setPokemons] = useState(results);
-  const [getAllPokemon, { data, loading, error }] =
-    useLazyQuery(GET_ALL_POKEMON);
+  const [scrollPage, setScrollPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [getAllPokemon, { data, error }] = useLazyQuery(GET_ALL_POKEMON, {
+    onCompleted: () => {
+      setScrollPage((prev) => prev + 1);
+      setIsLoading(false);
+    },
+  });
   const toast = useToast();
 
-  let scrollPage = 1;
-
-  const scrollListener = (e) => {
-    // detect user has reached the bottom
-    const { innerHeight, pageYOffset } = window;
-    const { offsetHeight } = document.body;
-    if (innerHeight + pageYOffset >= offsetHeight) {
-      if (!loading) {
+  const scrollListener = useCallback(
+    (e) => {
+      // detect user has reached the bottom
+      const { innerHeight, pageYOffset } = window;
+      const { offsetHeight } = document.body;
+      if (innerHeight + pageYOffset >= offsetHeight) {
+        setIsLoading(true);
         getAllPokemon({
           variables: { limit: 24, offset: scrollPage * 24 },
-        }).then(() => {
-          scrollPage += 1;
         });
       }
-    }
-  };
+    },
+    [scrollPage, getAllPokemon, setScrollPage, data, pokemons]
+  );
 
   useEffect(() => {
     if (error) {
@@ -57,11 +61,7 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
     if (data) {
       setPokemons([...pokemons, ...data.pokemons.results]);
     }
-  }, [data, scrollPage]);
-
-  useEffect(() => {
-    console.log(scrollPage, pokemons);
-  }, [pokemons]);
+  }, [data]);
 
   useEffect(() => {
     window.addEventListener("scroll", scrollListener, { passive: true });
@@ -69,7 +69,14 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
     return () => {
       window.removeEventListener("scroll", scrollListener);
     };
-  }, []);
+  }, [
+    scrollListener,
+    scrollPage,
+    getAllPokemon,
+    setScrollPage,
+    data,
+    pokemons,
+  ]);
 
   return (
     <div>
@@ -84,7 +91,7 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
             pokemons?.map((pokemon) => (
               <PokemonCard key={`pokemon-${pokemon.id}`} pokemon={pokemon} />
             ))}
-          {loading && (
+          {isLoading && (
             <>
               <PokemonCardLoader />
               <PokemonCardLoader />

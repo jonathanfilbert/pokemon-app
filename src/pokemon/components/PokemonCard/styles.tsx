@@ -3,19 +3,21 @@ import styled from "@emotion/styled";
 export const PokemonCardWrapper = styled.div`
   width: 100%;
   border-radius: 10px;
-  position: relative;
-  padding: 10px 15px;
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   position: relative;
-  display: flex;
-  flex-direction: column;
 
   :hover {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px;
   }
 
   .pokemon-card-detail {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pokemon-card-content {
+    padding: 5px 10px;
     display: flex;
     flex-direction: column;
   }
@@ -33,11 +35,13 @@ export const PokemonCardWrapper = styled.div`
     padding: 5px 10px;
     color: #2e9c39;
     font-weight: bold;
+    z-index: 1;
   }
 
   .release-button {
     align-self: flex-end;
     margin-top: 1em;
+    z-index: 3;
   }
 
   .pokemon-nickname {
@@ -47,5 +51,12 @@ export const PokemonCardWrapper = styled.div`
     padding: 5px 10px;
     border-radius: 10px;
     margin-top: 5px;
+  }
+
+  .card-handle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
   }
 `;

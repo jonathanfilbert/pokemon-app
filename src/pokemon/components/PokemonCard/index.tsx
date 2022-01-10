@@ -1,6 +1,6 @@
 import { Button, toast, useToast } from "@chakra-ui/react";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import React, { useContext } from "react";
 import { toTitleCase } from "../../../shared/utils";
 import { PokemonResponse } from "../../containers/AllPokemonPage";
@@ -14,12 +14,8 @@ type PokemonCardProps = {
 
 const PokemonCard = ({ pokemon, nickname }: PokemonCardProps) => {
   const { releasePokemon } = useContext(PokemonContext);
-  const router = useRouter();
   const { getAmountOwnedById } = useContext(PokemonContext);
   const toast = useToast();
-  const handleClickPokemonCard = (name: string) => {
-    router.push(`/pokemon/${name}`);
-  };
 
   const handleReleasePokemon = () => {
     releasePokemon(nickname, pokemon);
@@ -36,30 +32,29 @@ const PokemonCard = ({ pokemon, nickname }: PokemonCardProps) => {
 
   return (
     <PokemonCardWrapper>
-      <div className="pokemon-owned-badge">
-        {getAmountOwnedById(pokemon.id)} owned
+      <Link href={`/pokemon/${pokemon.name}`}>
+        <a className="card-handle" />
+      </Link>
+      <div className="pokemon-card-content">
+        <div className="pokemon-owned-badge">
+          {getAmountOwnedById(pokemon.id)} owned
+        </div>
+        <Image src={pokemon.image} objectFit="cover" width={250} height={250} />
+        <div className="pokemon-card-detail">
+          <div className="pokemon-id">#{pokemon.id}</div>
+        </div>
+        <div className="pokemon-name">{toTitleCase(pokemon.name)}</div>
+        {nickname && <div className="pokemon-nickname">{nickname}</div>}
+        {nickname && (
+          <Button
+            colorScheme="red"
+            className="release-button"
+            onClick={() => handleReleasePokemon()}
+          >
+            Release
+          </Button>
+        )}
       </div>
-      <Image
-        onClick={() => handleClickPokemonCard(pokemon.name)}
-        src={pokemon.image}
-        objectFit="cover"
-        width={250}
-        height={250}
-      />
-      <div className="pokemon-card-detail">
-        <div className="pokemon-id">#{pokemon.id}</div>
-      </div>
-      <div className="pokemon-name">{toTitleCase(pokemon.name)}</div>
-      {nickname && <div className="pokemon-nickname">{nickname}</div>}
-      {nickname && (
-        <Button
-          colorScheme="red"
-          className="release-button"
-          onClick={() => handleReleasePokemon()}
-        >
-          Release
-        </Button>
-      )}
     </PokemonCardWrapper>
   );
 };
