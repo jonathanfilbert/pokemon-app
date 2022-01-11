@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { THEMES } from "../../../shared/utils";
 
 export const OwnedPokemonPageWrapper = styled.div`
   .owned-pokemon-grid {
@@ -16,5 +17,9 @@ export const OwnedPokemonPageWrapper = styled.div`
     font-weight: bold;
     font-size: x-large;
     margin-bottom: 10px;
+  }
+
+  .cta-button {
+    margin-bottom: 1em;
   }
 `;

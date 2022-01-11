@@ -8,7 +8,9 @@ const Header = () => {
   const { getOwnedPokemonTotalAmount } = useContext(PokemonContext);
   return (
     <HeaderWrapper>
-      <Logo />
+      <Link href="/">
+        <Logo />
+      </Link>
       <Link href="/pokemon/owned">
         <div className="owned-title">
           Owned ({getOwnedPokemonTotalAmount()})
