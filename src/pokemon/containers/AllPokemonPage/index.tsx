@@ -87,7 +87,7 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
   return (
     <div>
       <SEO
-        title="Pokepedia"
+        title="Pokepedia | Mobile first next-gen Pokedex"
         desc="Pokepedia is a pokemon application built for the mobile first generation."
       />
       <AllPokemonPageContainer>
