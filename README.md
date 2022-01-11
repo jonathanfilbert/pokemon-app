@@ -10,12 +10,19 @@
 - [Folder Structure](#folder-structure)
 - [Tech Stacks](#tech-stacks)
   - [Programming Paradigm](#programming-paradigm)
+    - [React and Hooks](#--react-and-hooks--)
   - [Language:](#language-)
+    - [Typescript](#typescript)
   - [Framework](#framework)
+    - [Next.JS](#nextjs)
   - [State Management](#state-management)
+    - [React Context-Provider Pattern](#react-context-provider-pattern)
   - [CSS in JS](#css-in-js)
+    - [Emotion](#emotion)
   - [Component Library](#component-library)
+    - [Chakra UI](#chakra-ui)
   - [Data Fetching](#data-fetching)
+    - [Apollo and GraphQL](#apollo-and-graphql)
 - [Features](#features)
   - [1. View All Pokemon](#1-view-all-pokemon)
   - [2. View detail of a Pokemon](#2-view-detail-of-a-pokemon)
@@ -85,7 +92,7 @@ The stacks used in this project are front-end heavy because this project does no
 
 ## Programming Paradigm
 
-### **React and Hooks**
+### React and Hooks
 
 Although [heavility debated](https://reactjs.org/docs/hooks-intro.html#motivation), functional programming is being embraced by the React community upon the release of React Hooks. The addition of hooks enable developers to fully embrace the functional component pattern and not caught up with class-based components constraints such as the binding of event handlers. This app uses functional component as well as hooks in every part. Several hooks, such as `**useEffect**` is used to manage React lifecycle, `**useState**` to create and update states, and `**useCallback**` to make sure functions don't change unless the dependencies change. Moreover, this app also uses 3rd party hooks offered by libraries used in this app, such as `**useLazyQuery**`, a hook by Apollo Client that returns a function to fetch queries on demand, and `**useToast**`, a hook by Chakra that returns a variable that can call the toast component.
 
