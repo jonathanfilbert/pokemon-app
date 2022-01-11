@@ -129,6 +129,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
           <div className="pokemon-hero-image" />
           <div className="pokemon-sprite-image">
             <Image
+              alt={`${pokemon.name} sprite`}
               src={pokemon.sprites.front_default}
               width={100}
               height={100}
@@ -191,6 +192,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
                   key !== "__typename" && (
                     <div className="image-sprite-container">
                       <Image
+                        alt={`${pokemon.name} sprite`}
                         src={pokemon.sprites[key]}
                         width="300px"
                         height="300px"

@@ -6,7 +6,12 @@ const PokemonFinishedScrolling = () => {
   return (
     <PokemonFinishedScrollingWrapper>
       <div className="image-container">
-        <Image src="/images/pikachu.png" layout="fill" objectFit="contain" />
+        <Image
+          alt="Pokepedia Logo"
+          src="/images/pikachu.png"
+          layout="fill"
+          objectFit="contain"
+        />
       </div>
       <div className="end-message">You have reached the end!</div>
     </PokemonFinishedScrollingWrapper>

@@ -48,6 +48,7 @@ const PokemonCaughtSuccessModal = ({
         <ModalBody>
           <PokemonCaughtSucessModalContentWrapper>
             <Image
+              alt={`${pokemon.name} sprite`}
               src={pokemon.sprites.front_default}
               width={100}
               height={100}

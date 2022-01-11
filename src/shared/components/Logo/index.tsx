@@ -8,7 +8,12 @@ const Logo = () => {
     <Link href="/">
       <LogoWrapper>
         <div className="logo-image-wrapper">
-          <Image src="/images/pikachu.png" layout="fill" objectFit="contain" />
+          <Image
+            alt="Pokepedia Logo"
+            src="/images/pikachu.png"
+            layout="fill"
+            objectFit="contain"
+          />
         </div>
         <div className="logo-text">Pokepedia</div>
       </LogoWrapper>
