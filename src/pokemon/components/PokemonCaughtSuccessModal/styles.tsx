@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { THEMES } from "../../../shared/utils";
 
 export const PokemonCaughtSucessModalContentWrapper = styled.div`
   width: 100%;
@@ -8,6 +9,6 @@ export const PokemonCaughtSucessModalContentWrapper = styled.div`
   align-items: center;
 
   .error-message {
-    color: red;
+    color: ${THEMES.color.error};
   }
 `;

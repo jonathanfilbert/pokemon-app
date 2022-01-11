@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { THEMES } from "../../../shared/utils";
 
 type PokemonDetailPageWrapperProps = {
   gradient: string[];
@@ -37,7 +38,7 @@ export const PokemonDetailPageWrapper = styled.div<PokemonDetailPageWrapperProps
     left: 10px;
     font-weight: bold;
     font-size: x-large;
-    color: white;
+    color: ${THEMES.color.tertiary};
   }
 
   .pokemon-tab-switcher {
@@ -72,9 +73,9 @@ export const PokemonDetailPageWrapper = styled.div<PokemonDetailPageWrapperProps
 
   .pokemon-move-chip {
     padding: 5px 10px;
-    background-color: gray;
+    background-color: ${THEMES.color.muted};
     font-weight: bold;
-    color: white;
+    color: ${THEMES.color.tertiary};
     border-radius: 10px;
   }
 

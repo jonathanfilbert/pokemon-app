@@ -34,3 +34,13 @@ export const toTitleCase = (str:string) => str
   }
 
   export const getColorByType = (type:string):string => colours[type] || "#777";
+
+export const THEMES = {
+  color: {
+    primary: '#18a522',
+    secondary: "#d6ffdf",
+    tertiary: "white",
+    muted: "gray",
+    error: "red",
+  }
+}

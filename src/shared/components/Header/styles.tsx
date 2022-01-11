@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { THEMES } from "../../utils";
 
 export const HeaderWrapper = styled.div`
   width: 100%;
@@ -10,7 +11,7 @@ export const HeaderWrapper = styled.div`
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border-radius: 0px 0px 2px 2px;
   position: fixed;
-  background-color: white;
+  background-color: ${THEMES.color.tertiary};
   z-index: 100;
 
   @media (min-width: 420px) {
@@ -21,8 +22,8 @@ export const HeaderWrapper = styled.div`
     font-weight: bold;
     font-size: xx-large;
     cursor: pointer;
-    background-color: #d6ffdf;
-    color: #2e9c39;
+    background-color: ${THEMES.color.secondary};
+    color: ${THEMES.color.primary};
     border-radius: 5px;
     padding: 5px 10px;
   }
@@ -31,8 +32,8 @@ export const HeaderWrapper = styled.div`
     font-weight: bold;
     font-size: medium;
     cursor: pointer;
-    background-color: #d6ffdf;
-    color: #2e9c39;
+    color: ${THEMES.color.tertiary};
+    background-color: ${THEMES.color.primary};
     padding: 5px 10px;
     border-radius: 5px;
     box-shadow: none;

@@ -39,7 +39,13 @@ const PokemonCard = ({ pokemon, nickname }: PokemonCardProps) => {
         <div className="pokemon-owned-badge">
           {getAmountOwnedById(pokemon.id)} owned
         </div>
-        <Image src={pokemon.image} objectFit="cover" width={250} height={250} />
+        <Image
+          alt={`${toTitleCase(pokemon.name)} image`}
+          src={pokemon.image}
+          objectFit="cover"
+          width={250}
+          height={250}
+        />
         <div className="pokemon-card-detail">
           <div className="pokemon-id">#{pokemon.id}</div>
         </div>

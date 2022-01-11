@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { THEMES } from "../../../shared/utils";
 
 export const PokemonCardWrapper = styled.div`
   width: 100%;
@@ -31,9 +32,9 @@ export const PokemonCardWrapper = styled.div`
     right: 0px;
     top: 0px;
     border-radius: 0px 10px 0px 10px;
-    background-color: #d6ffdf;
+    background-color: ${THEMES.color.secondary};
     padding: 5px 10px;
-    color: #2e9c39;
+    color: ${THEMES.color.primary};
     font-weight: bold;
     z-index: 1;
   }
@@ -46,8 +47,8 @@ export const PokemonCardWrapper = styled.div`
 
   .pokemon-nickname {
     display: block;
-    background: #ebffef;
-    color: #399441;
+    background: ${THEMES.color.secondary};
+    color: ${THEMES.color.primary};
     padding: 5px 10px;
     border-radius: 10px;
     margin-top: 5px;
