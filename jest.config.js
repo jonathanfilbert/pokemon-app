@@ -12,5 +12,8 @@ module.exports = {
   verbose: true,
   modulePathIgnorePatterns: ["__mocks__"],
   collectCoverage: true,
-  coveragePathIgnorePatterns: ["<rootDir>/pages/"],
+  coveragePathIgnorePatterns: [
+    "<rootDir>/pages/",
+    "<rootDir>/src/shared/components/PokemonCardLoader",
+  ],
 };
