@@ -21,7 +21,7 @@ export type PokeAPIResponse = {
 
 const AllPokemonPage = ({ results }: PokeAPIResponse) => {
   const [pokemons, setPokemons] = useState(results);
-  const [scrollPage, setScrollPage] = useState(44);
+  const [scrollPage, setScrollPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [getAllPokemon, { data, error }] = useLazyQuery(GET_ALL_POKEMON, {
     onCompleted: () => {

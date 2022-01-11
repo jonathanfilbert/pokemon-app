@@ -19,6 +19,7 @@
     "framer-motion": "^5.5.6",
     "graphql": "^16.2.0",
     "next": "latest",
+    "next-pwa": "^5.4.4",
     "nextjs-progressbar": "^0.0.13",
     "pokeapi-typescript": "^2.1.0",
     "react": "^17.0.2",
