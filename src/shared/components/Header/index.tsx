@@ -1,15 +1,14 @@
 import Link from "next/link";
 import React, { useContext } from "react";
 import { PokemonContext } from "../../../pokemon/context";
+import Logo from "../Logo";
 import { HeaderWrapper } from "./styles";
 
 const Header = () => {
   const { getOwnedPokemonTotalAmount } = useContext(PokemonContext);
   return (
     <HeaderWrapper>
-      <Link href="/">
-        <div className="header-title">Pokemon App</div>
-      </Link>
+      <Logo />
       <Link href="/pokemon/owned">
         <div className="owned-title">
           Owned ({getOwnedPokemonTotalAmount()})

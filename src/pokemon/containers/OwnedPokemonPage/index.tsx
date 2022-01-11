@@ -10,8 +10,8 @@ const OwnedPokemonPage = () => {
   return (
     <OwnedPokemonPageWrapper>
       <SEO
-        title="Owned Pokemon | Pokemon App"
-        desc="My Owned Pokemon, add yours now on the Pokemon App."
+        title="Owned Pokemon | Pokepedia"
+        desc="My Owned Pokemon, add yours now on Pokepedia."
       />
       <div className="page-title">Owned Pokemons</div>
       <div className="owned-pokemon-grid">

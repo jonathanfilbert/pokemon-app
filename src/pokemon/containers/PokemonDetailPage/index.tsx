@@ -95,7 +95,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
   return (
     <div>
       <SEO
-        title={`${toTitleCase(pokemon.name)} | Pokemon App`}
+        title={`${toTitleCase(pokemon.name)} | Pokepedia`}
         desc={`${toTitleCase(
           pokemon.name
         )} details, learn more on the Pokemon App.`}

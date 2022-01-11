@@ -5,6 +5,7 @@ import { GET_ALL_POKEMON } from "../../../shared/apollo/queries";
 import PokemonCardLoader from "../../../shared/components/PokemonCardLoader";
 import SEO from "../../../shared/components/SEO";
 import PokemonCard from "../../components/PokemonCard";
+import PokemonFinishedScrolling from "../../components/PokemonFinishedScrolling";
 import { AllPokemonPageContainer } from "./styles";
 
 export type PokemonResponse = {
@@ -20,7 +21,7 @@ export type PokeAPIResponse = {
 
 const AllPokemonPage = ({ results }: PokeAPIResponse) => {
   const [pokemons, setPokemons] = useState(results);
-  const [scrollPage, setScrollPage] = useState(1);
+  const [scrollPage, setScrollPage] = useState(44);
   const [isLoading, setIsLoading] = useState(false);
   const [getAllPokemon, { data, error }] = useLazyQuery(GET_ALL_POKEMON, {
     onCompleted: () => {
@@ -29,20 +30,21 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
     },
   });
   const toast = useToast();
+  const [isFinished, setIsFinished] = useState(false);
 
   const scrollListener = useCallback(
     (e) => {
       // detect user has reached the bottom
       const { innerHeight, pageYOffset } = window;
       const { offsetHeight } = document.body;
-      if (innerHeight + pageYOffset >= offsetHeight) {
+      if (innerHeight + pageYOffset >= offsetHeight && !isFinished) {
         setIsLoading(true);
         getAllPokemon({
           variables: { limit: 24, offset: scrollPage * 24 },
         });
       }
     },
-    [scrollPage, getAllPokemon, setScrollPage, data, pokemons]
+    [scrollPage, getAllPokemon, setScrollPage, data, pokemons, isFinished]
   );
 
   useEffect(() => {
@@ -59,9 +61,13 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
 
   useEffect(() => {
     if (data) {
-      setPokemons([...pokemons, ...data.pokemons.results]);
+      if (data.pokemons.next) {
+        setPokemons([...pokemons, ...data.pokemons.results]);
+      } else {
+        setIsFinished(true);
+      }
     }
-  }, [data]);
+  }, [data, setIsFinished]);
 
   useEffect(() => {
     window.addEventListener("scroll", scrollListener, { passive: true });
@@ -81,8 +87,8 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
   return (
     <div>
       <SEO
-        title="Pokemon App"
-        desc="Pokemon Application built for the mobile first generation."
+        title="Pokepedia"
+        desc="Pokepedia is a pokemon application built for the mobile first generation."
       />
       <AllPokemonPageContainer>
         <div className="page-title">All Pokemon</div>
@@ -103,6 +109,7 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
             </>
           )}
         </div>
+        {isFinished && <PokemonFinishedScrolling />}
       </AllPokemonPageContainer>
     </div>
   );
