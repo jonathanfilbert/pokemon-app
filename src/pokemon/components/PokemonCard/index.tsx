@@ -49,10 +49,13 @@ const PokemonCard = ({ pokemon, nickname }: PokemonCardProps) => {
         <div className="pokemon-card-detail">
           <div className="pokemon-id">#{pokemon.id}</div>
         </div>
-        <div className="pokemon-name">{toTitleCase(pokemon.name)}</div>
+        <div className="pokemon-name" data-testid="pokemon-name">
+          {toTitleCase(pokemon.name)}
+        </div>
         {nickname && <div className="pokemon-nickname">{nickname}</div>}
         {nickname && (
           <Button
+            data-testid="release-button"
             colorScheme="red"
             className="release-button"
             onClick={() => handleReleasePokemon()}
