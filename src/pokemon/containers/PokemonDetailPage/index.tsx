@@ -32,7 +32,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
     } else {
       toast({
         title: `Failed to catch!`,
-        description: `Oh no! ${toTitleCase(pokemon.name)} has ran away!`,
+        description: `Oh no! ${toTitleCase(pokemon.name)} has run away!`,
         status: "error",
         duration: 3000,
         isClosable: true,
