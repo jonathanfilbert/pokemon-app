@@ -185,7 +185,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
 
         {isSpritesSectionActive && (
           <div>
-            <div>Pokemon Types</div>
+            <div className="pokemon-detail-title">Pokemon Sprites</div>
             <div className="pokemon-details-section">
               {Object.keys(pokemon.sprites).map(
                 (key) =>
