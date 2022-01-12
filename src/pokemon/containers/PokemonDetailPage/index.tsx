@@ -14,7 +14,7 @@ type PokemonDetailPageProps = {
 };
 
 const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
-  const { catchPokemon, isPokemonWithSameNicknameExist } =
+  const { catchPokemon, isPokemonWithSameNicknameExist, canCatchPokemon } =
     useContext(PokemonContext);
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,8 +26,8 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
   const dominantColor = getColorByType(pokemon.types[0].type.name);
 
   const handleCatchPokemon = (pokemon: IPokemon) => {
-    const generatedNumber = Math.random();
-    if (generatedNumber < 0.5) {
+    const canCatch = canCatchPokemon();
+    if (canCatch) {
       onOpen();
     } else {
       toast({

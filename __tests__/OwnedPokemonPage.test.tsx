@@ -26,7 +26,7 @@ jest.mock("next/head", () => {
   };
 });
 
-const mockProvider = {
+let mockProvider = {
   ownedPokemons: mocks,
   releasePokemon: (nickname, pokemon) => {
     let newOwnedPokemons = mocks;
@@ -42,10 +42,11 @@ const mockProvider = {
   isPokemonWithSameNicknameExist: (id: number, nickname: string): any => {},
   getAmountOwnedById: (id: number): any => {},
   getOwnedPokemonTotalAmount: (): any => {},
+  canCatchPokemon: (): any => {},
 };
 
 test("renders owned pokemon page", async () => {
-  const { rerender } = render(
+  render(
     <PokemonContext.Provider value={mockProvider}>
       <OwnedPokemonPage />
     </PokemonContext.Provider>
