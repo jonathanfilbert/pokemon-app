@@ -114,7 +114,7 @@ Although [heavility debated](https://reactjs.org/docs/hooks-intro.html#motivatio
 
 ### Typescript
 
-Typescript is used instead of Javascript because of the type safe capabilities and **autocomplete** that makes the development process faster. Also, since Next.JS supports Typescript out of the box, why not use it?
+Typescript is used instead of Javascript because of the type safe capabilities and **autocomplete** that makes the development process faster. Also, since Next.JS supports Typescript out of the box, why not use it? Moreover, **TSDoc** is used to give documentations on the functions in this app. This is done so future maintainers or enthusiast can read and understand the code better.
 
 ## Framework
 

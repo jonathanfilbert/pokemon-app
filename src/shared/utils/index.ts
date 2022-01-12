@@ -6,7 +6,10 @@ const titleCase = (str: string) => str.replace(
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     }
   );
-
+  /* utilizing the function above, to parse the underscores that may appear.
+  *
+  * @param {string} str - string to be parsed
+  */
 export const toTitleCase = (str:string) => str
 .split("_").map((word) => titleCase(word)).join(" ")
 
@@ -33,8 +36,18 @@ export const toTitleCase = (str:string) => str
     fairy: '#D685AD',
   }
 
-  export const getColorByType = (type:string):string => colours[type] || "#777";
+/**
+   * Function to retrieve color hex string based on a type.
+   * If the type is not available, return a gray color.
+   *
+   * @param {string} type - pokemon type
+   * @return returns the hex string
+   */
+export const getColorByType = (type:string):string => colours[type] || "#777";
 
+  /**
+   * Simple theme object to keep track of color palettes
+   */
 export const THEMES = {
   color: {
     primary: '#18a522',

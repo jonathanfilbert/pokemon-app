@@ -12,11 +12,22 @@ type PokemonCardProps = {
   nickname?: string;
 };
 
+/**
+ * Pokemon Card Component
+ *
+ * @param pokemon - The Pokemon being displayed
+ * @param nickname - Theb nickname for this particular pokemon
+ * @return The pokemon card component
+ */
 const PokemonCard = ({ pokemon, nickname }: PokemonCardProps) => {
   const { releasePokemon } = useContext(PokemonContext);
   const { getAmountOwnedById } = useContext(PokemonContext);
   const toast = useToast();
 
+  /**
+   * Calls the releasePokemon function from context to release this Pokemon
+   *
+   */
   const handleReleasePokemon = () => {
     releasePokemon(nickname, pokemon);
     toast({

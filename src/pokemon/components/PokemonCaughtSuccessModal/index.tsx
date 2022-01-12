@@ -24,6 +24,18 @@ type PokemonCaughtSuccessModalProps = {
   onSavePokemon: () => any;
 };
 
+/**
+ * Modal shown when successfully caught the Pokemon
+ *
+ * @param pokemon - the pokemon being caught
+ * @param isOpen - whether this modal is open,
+ * @param onClose - close the modal,
+ * @param isValid - whether the nickname is valid,
+ * @param onChangeNickname - function called when typing nickname,
+ * @param nickname - nickname being typed,
+ * @param onSavePokemon - function called when saving the pokemon,
+ * }
+ */
 const PokemonCaughtSuccessModal = ({
   pokemon,
   isOpen,
@@ -33,6 +45,11 @@ const PokemonCaughtSuccessModal = ({
   nickname,
   onSavePokemon,
 }: PokemonCaughtSuccessModalProps) => {
+  /**
+   * Handles the searching of Pokemon in Context by its nickname
+   *
+   * @param nickname - nickname of the searched Pokemon
+   */
   const handleSearchPokemonByNickname = (nickname: string) => {
     onChangeNickname(nickname);
   };

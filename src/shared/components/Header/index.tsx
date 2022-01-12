@@ -4,6 +4,9 @@ import { PokemonContext } from "../../../pokemon/context";
 import Logo from "../Logo";
 import { HeaderWrapper } from "./styles";
 
+/**
+ * Header component that acts as a navigation bar.
+ */
 const Header = () => {
   const { getOwnedPokemonTotalAmount } = useContext(PokemonContext);
   return (

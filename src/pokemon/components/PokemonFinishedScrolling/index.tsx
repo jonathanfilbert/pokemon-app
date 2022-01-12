@@ -2,6 +2,10 @@ import Image from "next/image";
 import React from "react";
 import PokemonFinishedScrollingWrapper from "./styles";
 
+/**
+ * Component shown when the list of Pokemon has reached its end
+ *
+ */
 const PokemonFinishedScrolling = () => {
   return (
     <PokemonFinishedScrollingWrapper>

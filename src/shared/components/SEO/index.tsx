@@ -5,6 +5,12 @@ type SEOProps = {
   desc: string;
 };
 
+/**
+ * SEO Component to be rendered on every page.
+ *
+ * @param title - the title of the current page
+ * @param desc - the description of the current page
+ */
 const SEO = ({ title, desc }: SEOProps) => (
   <Head>
     <title>{title}</title>

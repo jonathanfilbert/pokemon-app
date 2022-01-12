@@ -3,6 +3,10 @@ import Image from "next/image";
 import LogoWrapper from "./styles";
 import Link from "next/link";
 
+/**
+ * Logo component
+ *
+ */
 const Logo = () => {
   return (
     <Link href="/">

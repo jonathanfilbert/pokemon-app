@@ -19,6 +19,11 @@ export type PokeAPIResponse = {
   results: PokemonResponse[];
 };
 
+/**
+ * Page level component to render the all pokemon page
+ *
+ * @param results - the results from graphql queried by getServerSideProps
+ */
 const AllPokemonPage = ({ results }: PokeAPIResponse) => {
   const [pokemons, setPokemons] = useState(results);
   const [scrollPage, setScrollPage] = useState(1);
@@ -32,6 +37,9 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
   const toast = useToast();
   const [isFinished, setIsFinished] = useState(false);
 
+  /** Scroll Listener function to detect whether user has reached the bottom of page.
+   * If user has reached the bottom, set loading to true, and query the next pokemons.
+   */
   const scrollListener = useCallback(
     (e) => {
       // detect user has reached the bottom
@@ -47,6 +55,9 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
     [scrollPage, getAllPokemon, setScrollPage, data, pokemons, isFinished]
   );
 
+  /** useEffect to detect if any error happens whilst querying with useLazyQuery.
+   * If error happens, call a toast with the error message.
+   */
   useEffect(() => {
     if (error) {
       toast({
@@ -59,6 +70,11 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
     }
   }, [error]);
 
+  /** useEffect to detect data changes on the query.
+   * If there are data changes (query complete), then check also if it's not the last page,
+   * then merge the newly queried pokemons.
+   * If the new data does not have next (last page), then set the isFinished to true
+   */
   useEffect(() => {
     if (data) {
       if (data.pokemons.next) {
@@ -69,6 +85,8 @@ const AllPokemonPage = ({ results }: PokeAPIResponse) => {
     }
   }, [data, setIsFinished]);
 
+  /** useEffect to make sure every function reacts to the scrollListener
+   */
   useEffect(() => {
     window.addEventListener("scroll", scrollListener, { passive: true });
     // remove event listener prevent memory leaks

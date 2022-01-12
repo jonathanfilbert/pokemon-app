@@ -1,13 +1,16 @@
 import { Button } from "@chakra-ui/react";
 import Link from "next/link";
-import React, { useContext, useEffect } from "react";
-import PokemonCardLoader from "../../../shared/components/PokemonCardLoader";
+import React, { useContext } from "react";
 import SEO from "../../../shared/components/SEO";
 import { THEMES } from "../../../shared/utils";
 import PokemonCard from "../../components/PokemonCard";
 import { PokemonContext } from "../../context";
 import { OwnedPokemonPageWrapper } from "./styles";
 
+/**
+ * Page level component that displays the pokemon that a user owns.
+ *
+ */
 const OwnedPokemonPage = () => {
   const { ownedPokemons } = useContext(PokemonContext);
   return (
@@ -18,6 +21,7 @@ const OwnedPokemonPage = () => {
       />
       <div className="page-title">Owned Pokemons</div>
       <div className="owned-pokemon-grid">
+        {/* if a user does not own any pokemon, render the cta component */}
         {Object.keys(ownedPokemons).length === 0 && (
           <div>
             <div className="cta-button">Nothing to see here...</div>
@@ -31,6 +35,7 @@ const OwnedPokemonPage = () => {
             </Link>
           </div>
         )}
+        {/* if a user owns pokemons, render those pokemon in form of the PokemonCard component */}
         {ownedPokemons &&
           Object.keys(ownedPokemons).map((id) =>
             ownedPokemons[id].map((ownedPokemon) => (

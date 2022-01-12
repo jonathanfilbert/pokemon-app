@@ -13,6 +13,11 @@ type PokemonDetailPageProps = {
   pokemon: IPokemon;
 };
 
+/**
+ * Page level component to render the detail of a pokemon
+ *
+ * @param pokemon - the pokemon to be rendered
+ */
 const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
   const { catchPokemon, isPokemonWithSameNicknameExist, canCatchPokemon } =
     useContext(PokemonContext);
@@ -25,6 +30,11 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
   const [isSpritesSectionActive, setIsSpritesSectionActive] = useState(false);
   const dominantColor = getColorByType(pokemon.types[0].type.name);
 
+  /**
+   * Handles the catching of Pokemon
+   *
+   * @param pokemon - Pokemon to be caught
+   */
   const handleCatchPokemon = (pokemon: IPokemon) => {
     const canCatch = canCatchPokemon();
     if (canCatch) {
@@ -40,6 +50,14 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
     }
   };
 
+  /**
+   * Handles typing the nickname of Pokemon.
+   * Checks whether nickname exists in the provider,
+   * if it does then set state to be invalid
+   * if it does not then set state to be valid
+   *
+   * @param nickname - nickname given
+   */
   const handleGiveNicknamePokemon = (nickname: string) => {
     setNickname(nickname);
     if (isPokemonWithSameNicknameExist(pokemon.id, nickname)) {
@@ -49,6 +67,11 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
     }
   };
 
+  /**
+   * Handles the saving of a pokemon with a valid nickname
+   * Calls a function to save the pokemon in the context,
+   * then calls a toast to indicate success
+   */
   const handleSavePokemon = () => {
     catchPokemon(nickname, pokemon);
     onClose();
@@ -63,6 +86,17 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
     });
   };
 
+  /**
+   * Handles the creation of a 1 dimensional array with 2 colors based on a Pokemon types.
+   * This is created with the assumption that a Pokemon can have at MAX 2 types.
+   * cr: https://pokemon.fandom.com/wiki/Types#:~:text=Pok%C3%A9mon%20themselves%20can%20have%20up,%2FFlying%2Dtype%20move).
+   *
+   * If a pokemon has 2 types, then the array would be [type1, type 2]
+   * If a pokemon has 1 type, then the array would be [type1,type1]
+   *
+   * @param {IPokemonType[]} types - types array of the pokemon
+   * @return an array of types
+   */
   const generateTypeGradientArray = (types: IPokemonType[]): string[] => {
     if (types.length > 1) {
       return [...types.map((type) => getColorByType(type.type.name))];
@@ -71,6 +105,10 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
     return [color, color];
   };
 
+  /**
+   * useEffect to detect if the moves section is active.
+   * disables the other sections.
+   */
   useEffect(() => {
     if (isMovesSectionActive) {
       setIsTypeSectionActive(false);
@@ -78,6 +116,10 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
     }
   }, [isMovesSectionActive]);
 
+  /**
+   * useEffect to detect if the sprites section is active.
+   * disables the other sections.
+   */
   useEffect(() => {
     if (isSpritesSectionActive) {
       setIsTypeSectionActive(false);
@@ -85,6 +127,10 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
     }
   }, [isSpritesSectionActive]);
 
+  /**
+   * useEffect to detect if the moves section is active.
+   * disables the other sections.
+   */
   useEffect(() => {
     if (isTypeSectionActive) {
       setIsMovesSectionActive(false);
