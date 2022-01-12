@@ -15,6 +15,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           flags: unittests # optional
           directory: ./coverage/
+          files: ./coverage/coverage-final.json,./coverage/coverage-summary.json
           name: pokemon-test # optional
           fail_ci_if_error: true # optional (default = false)
           verbose: true # optional (default = false)
