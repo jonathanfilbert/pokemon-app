@@ -1,7 +1,8 @@
 name: Test
 on: push
 jobs:
-  build:
+  unit_test:
+    env: CODECOV_TOKEN='2bc2b9b9-94b5-4478-8107-1f69e848e51e'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -9,3 +10,12 @@ jobs:
         run: npm install
       - name: Run Jest Tests
         run: npm run test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests # optional
+          directory: ./coverage/
+          name: pokemon-test # optional
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)

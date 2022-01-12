@@ -16,4 +16,5 @@ module.exports = {
     "<rootDir>/pages/",
     "<rootDir>/src/shared/components/PokemonCardLoader",
   ],
+  coverageReporters: ["json-summary", "text", "lcov"],
 };
