@@ -3,8 +3,6 @@
   <a align="center" href="https://pokepedia-app.vercel.app"><img align="center" src="https://i.ibb.co/3dLSpJz/Screen-Shot-2022-01-11-at-18-07-52.png" alt="Docusaurus"></a>
 </h1>
 
-[![codecov](https://codecov.io/gh/jonathanfilbert/pokemon-app/branch/main/graph/badge.svg?token=9BBYEVHDGG)](https://codecov.io/gh/jonathanfilbert/pokemon-app)
-
 ![Coverage Branch](/badges/badge-branches.svg)
 
 ![Coverage Function](/badges/badge-functions.svg)
@@ -12,6 +10,8 @@
 ![Coverage lines](/badges/badge-lines.svg)
 
 ![Coverage Statements](/badges/badge-statements.svg)
+
+[See Live test coverages in CI](https://github.com/jonathanfilbert/pokemon-app/actions/workflows/test.yml)
 
 # Table of Contents
 
