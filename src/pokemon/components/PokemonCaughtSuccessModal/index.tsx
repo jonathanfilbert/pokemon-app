@@ -46,7 +46,7 @@ const PokemonCaughtSuccessModal = ({
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <PokemonCaughtSucessModalContentWrapper>
+          <PokemonCaughtSucessModalContentWrapper data-testid="sucess-modal">
             <Image
               alt={`${pokemon.name} sprite`}
               src={pokemon.sprites.front_default}

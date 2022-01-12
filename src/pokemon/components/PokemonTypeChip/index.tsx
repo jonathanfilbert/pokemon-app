@@ -9,7 +9,10 @@ type PokemonTypeChipProps = {
 
 const PokemonTypeChip = ({ type, children }: PokemonTypeChipProps) => {
   return (
-    <PokemonTypeChipWrapper chipColor={getColorByType(type)}>
+    <PokemonTypeChipWrapper
+      chipColor={getColorByType(type)}
+      data-testid="type-chip"
+    >
       {children}
     </PokemonTypeChipWrapper>
   );

@@ -14,7 +14,7 @@ type PokemonDetailPageProps = {
 };
 
 const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
-  const { catchPokemon, isPokemonWithSameNicknameExist } =
+  const { catchPokemon, isPokemonWithSameNicknameExist, canCatchPokemon } =
     useContext(PokemonContext);
   const toast = useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,8 +26,8 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
   const dominantColor = getColorByType(pokemon.types[0].type.name);
 
   const handleCatchPokemon = (pokemon: IPokemon) => {
-    const generatedNumber = Math.random();
-    if (generatedNumber < 0.5) {
+    const canCatch = canCatchPokemon();
+    if (canCatch) {
       onOpen();
     } else {
       toast({
@@ -114,6 +114,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
         gradient={generateTypeGradientArray(pokemon.types)}
       >
         <Button
+          data-testid="catch-button"
           className="catch-button"
           onClick={() => handleCatchPokemon(pokemon)}
           backgroundColor={dominantColor}
@@ -124,7 +125,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
         <div className="pokemon-hero">
           <div className="pokemon-name-info-container">
             <div>#{pokemon.id}</div>
-            <div>{toTitleCase(pokemon.name)}</div>
+            <div data-testid="pokemon-name">{toTitleCase(pokemon.name)}</div>
           </div>
           <div className="pokemon-hero-image" />
           <div className="pokemon-sprite-image">
@@ -138,6 +139,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
         </div>
         <div className="pokemon-tab-switcher">
           <Button
+            data-testid="type-button"
             paddingLeft={"10px"}
             backgroundColor={isTypeSectionActive ? dominantColor : "whitesmoke"}
             textColor={isTypeSectionActive ? "white" : "black"}
@@ -146,6 +148,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
             Types
           </Button>
           <Button
+            data-testid="moves-button"
             bgColor={isMovesSectionActive ? dominantColor : "whitesmoke"}
             textColor={isMovesSectionActive ? "white" : "black"}
             onClick={() => setIsMovesSectionActive(true)}
@@ -153,6 +156,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
             Moves
           </Button>
           <Button
+            data-testid="sprites-button"
             bgColor={isSpritesSectionActive ? dominantColor : "whitesmoke"}
             textColor={isSpritesSectionActive ? "white" : "black"}
             onClick={() => setIsSpritesSectionActive(true)}
@@ -165,7 +169,13 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
             <div className="pokemon-detail-title">Pokemon Moves</div>
             <div className="pokemon-details-section">
               {pokemon.moves.map((move) => (
-                <div className="pokemon-move-chip">{move.move.name}</div>
+                <div
+                  data-testid="move-chip"
+                  className="pokemon-move-chip"
+                  key={move.move.name}
+                >
+                  {move.move.name}
+                </div>
               ))}
             </div>
           </div>
@@ -175,7 +185,7 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
             <div className="pokemon-detail-title">Pokemon Types</div>
             <div className="pokemon-details-section">
               {pokemon.types.map((type) => (
-                <PokemonTypeChip type={type.type.name}>
+                <PokemonTypeChip type={type.type.name} key={type.type.name}>
                   {type.type.name}
                 </PokemonTypeChip>
               ))}
@@ -190,7 +200,11 @@ const PokemonDetailPage = ({ pokemon }: PokemonDetailPageProps) => {
               {Object.keys(pokemon.sprites).map(
                 (key) =>
                   key !== "__typename" && (
-                    <div className="image-sprite-container">
+                    <div
+                      key={key}
+                      className="image-sprite-container"
+                      data-testid="pokemon-sprite-image"
+                    >
                       <Image
                         alt={`${pokemon.name} sprite`}
                         src={pokemon.sprites[key]}

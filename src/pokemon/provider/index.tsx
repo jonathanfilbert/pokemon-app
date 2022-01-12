@@ -76,6 +76,10 @@ export const PokemonProvider = ({ children }) => {
     return total;
   };
 
+  const canCatchPokemon = (): boolean => {
+    return Math.random() < 0.5;
+  };
+
   return (
     <PokemonContext.Provider
       value={{
@@ -85,6 +89,7 @@ export const PokemonProvider = ({ children }) => {
         isPokemonWithSameNicknameExist,
         getAmountOwnedById,
         getOwnedPokemonTotalAmount,
+        canCatchPokemon,
       }}
     >
       {children}

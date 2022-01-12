@@ -41,6 +41,7 @@ const OwnedPokemonPage = () => {
                   image: ownedPokemon.pokemon.sprites.front_default,
                 }}
                 nickname={ownedPokemon.nickname}
+                key={`${ownedPokemon.pokemon.name} - ${ownedPokemon.nickname}`}
               />
             ))
           )}

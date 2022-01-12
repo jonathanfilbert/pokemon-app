@@ -3,6 +3,16 @@
   <a align="center" href="https://pokepedia-app.vercel.app"><img align="center" src="https://i.ibb.co/3dLSpJz/Screen-Shot-2022-01-11-at-18-07-52.png" alt="Docusaurus"></a>
 </h1>
 
+[![codecov](https://codecov.io/gh/jonathanfilbert/pokemon-app/branch/main/graph/badge.svg?token=9BBYEVHDGG)](https://codecov.io/gh/jonathanfilbert/pokemon-app)
+
+![Coverage Branch](/badges/badge-branches.svg)
+
+![Coverage Function](/badges/badge-functions.svg)
+
+![Coverage lines](/badges/badge-lines.svg)
+
+![Coverage Statements](/badges/badge-statements.svg)
+
 # Table of Contents
 
 - [Description](#description)
@@ -10,7 +20,7 @@
 - [Folder Structure](#folder-structure)
 - [Tech Stacks](#tech-stacks)
   - [Programming Paradigm](#programming-paradigm)
-    - [React and Hooks](#--react-and-hooks--)
+    - [React and Hooks](#react-and-hooks)
   - [Language:](#language-)
     - [Typescript](#typescript)
   - [Framework](#framework)
@@ -23,6 +33,10 @@
     - [Chakra UI](#chakra-ui)
   - [Data Fetching](#data-fetching)
     - [Apollo and GraphQL](#apollo-and-graphql)
+  - [Testing Suite](#testing-suite)
+    - [React Testing Library & JEST](#react-testing-library---jest)
+  - [Continuous Integration](#continuous-integration)
+    - [Github Actions](#github-actions)
 - [Features](#features)
   - [1. View All Pokemon](#1-view-all-pokemon)
   - [2. View detail of a Pokemon](#2-view-detail-of-a-pokemon)
@@ -131,6 +145,18 @@ Although **some components and UI parts are created from the ground up** to matc
 ### Apollo and GraphQL
 
 If in the microservice world, gRPC disrupts the world by enabling microservices within the backend communicate seamlessly, then in the frontend world, **GraphQL** makes applications easier to consume data from endpoints. The downside of REST lies in its resource transferring method where specific data typically can only be consumed in a specific endpoint adress. This usually leads to the creation of too many endpoints e.g. `${BACKEND}/pokemons/` and `${BACKEND}/pokemon/${id}`. This is answered with GraphQL in a very elegant manner, where information hierarchy is represented as graphs and each point of information is a node, where we can query any points we want from **a single endpoint**. A good data transfer method requires a good data transfer client, and this is where **Apollo** comes in. Apollo provides an easy to use client to query graphql from our NextJS app, moreover Apollo does a lot out of the box, including **automating query caching** using `InMemoryCache()`, **client provider** using `ApolloProvider`to that puts our Apollo client inside the context to provide access anywhere inside our app, and providing **hooks** such as`useLazyQuery` to let us query graphql on demand.
+
+## Testing Suite
+
+### React Testing Library & JEST
+
+What better way to test React, other than using a test suite created by the teams behind React? **React Testing Library** features a lot of easy to use API that can be used to test react UIs, `render()` and `waitFor()` can be used to render react components to the testing environment relatively easy. A great suite requires an amazing test runner, this is where **JEST** comes in. Created by the same company which creates React Testing Library, JEST features an array of capabilities you'd expect from a test runner. Some of the JEST capabilities used in this project are: asynchronous testing with `test('', async () => {})` which makes us able to fetch data and grab items asynchronously, the wondrously amazing JEST matchers: `expect()` and `toBe()` are used to assert values during tests, and coverage output to display test coverages on statements and functions. Moreover, **Apollo** also provides an easy to use component to provide our graphql client in the testing environment using `MockedProvider` so we can do mock queries relatively easy.
+
+## Continuous Integration
+
+### Github Actions
+
+**Github Actions** make developers able to write a whole pipeline command in literally minutes. This project uses a relatively simple github workflow that runs test on every push. With the Github pipeline features, developers can build complex pipelines relatively easy, workflow piepleines such as not able to merge if a test fails can be done with ease via github workflows.
 
 # Features
 

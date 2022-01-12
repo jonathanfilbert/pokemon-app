@@ -1,0 +1,21 @@
+name: Test
+on: push
+jobs:
+  unit_test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run Jest Tests
+        run: npm run test
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          flags: unittests # optional
+          directory: ./coverage/
+          files: ./coverage/coverage-final.json,./coverage/coverage-summary.json
+          name: pokemon-test # optional
+          fail_ci_if_error: true # optional (default = false)
+          verbose: true # optional (default = false)
