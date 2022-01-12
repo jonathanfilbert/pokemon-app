@@ -182,3 +182,5 @@ At the bottom right of the detail page, you can choose to catch the Pokemon! The
 After catching some Pokemon, you can browse through all the Pokemons you've caught in this page. You can also release Pokemon, bye bye!
 ![View Owned Pokemon](https://i.ibb.co/9pmNQqD/pokepedia-app-vercel-app-4.png)
 ![Releasing Pokemon](https://i.ibb.co/wr9987C/pokepedia-app-vercel-app-6.png)
+
+_this repository was made public by the request of Tokopedia recruitment team._
